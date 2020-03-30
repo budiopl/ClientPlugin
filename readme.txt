@@ -1,6 +1,6 @@
 === Hurtownia - Budio.pl ===
 Contributors: budiopl
-Tags: budio
+Tags: budio, budiopl, hurtownia
 Requires at least: 4.9
 Tested up to: 5.3
 Stable tag: 1.0
@@ -11,7 +11,8 @@ Plugin dla hurtowni będących w programie budio.pl
 
 == Description ==
 
-Umieść link do profilu hurtowni budio.pl na swojej stronie WWW. Zadbaj też, aby twoi wykonawcy mieli łatwy dostęp do aplikacji.
+Umieść link do profilu hurtowni budio.pl na swojej stronie WWW. Zadbaj też, aby twoi wykonawcy mieli łatwy dostęp do aplikacji. Nasz plugin łączy się z serwisem zewnętrznym w celu zweryfikowania hurtowni i jej przynależy do programu Budio.pl.
+Jeśli hurtownia należy do programu zwracany jest jej uniklany adres URL wizytówki w marketplace budio.pl. Więcej informacji znajdziesz w naszej [polityce prywatności] (https://budio.pl/polityka-prywatnosci-i-cookies)
 
 == Installation ==
 

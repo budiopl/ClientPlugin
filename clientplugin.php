@@ -3,23 +3,31 @@
  * Plugin Name: Hurtownia - Budio.pl
  * Plugin URI: https://github.com/budiopl/ClientPlugin
  * Description: Umieszcza link do twojej hurtowni w stopce strony.
- * Version: 1.0
+ * Version: 1.1
  * Author: Budio.pl
  * Author URI: https://budio.pl
  * License: GPL2
  */
 
-add_action('wp_head', 'main_css');
 
-function main_css()
+add_action('wp_head', 'cphb_add_style');
+function cphb_add_style()
 {
-      echo '<link rel="stylesheet" href="'.plugins_url( 'css/clientplugin.css', __FILE__ ).'" type="text/css" />';
+      wp_enqueue_style( 'clientplugin-style', plugins_url( 'css/clientplugin.css', __FILE__ ), false );
 }
 
 
-add_action( 'wp_footer', 'budio_signature' );
+add_action( 'wp_enqueue_scripts', 'cphb_add_google_fonts' );
+function cphb_add_google_fonts()
+{
+    wp_enqueue_style( 'wpb-google-fonts', '//fonts.googleapis.com/css?family=Roboto:300&display=swap&subset=latin-ext', false );
+}
 
-function budio_signature () {
+
+
+add_action( 'wp_footer', 'cphb_add_signature' );
+function cphb_add_signature ()
+{
     $domain = parse_url(get_site_url());
     $response = wp_remote_get( 'https://itnavigator.budio.pl:444/wp-plugin-data?url='.$domain['host'] );
 
