@@ -11,6 +11,9 @@
     font-family: 'Roboto', sans-serif;
     color: #4592FF;
 }
+.links a {
+    margin-right: 20px;
+}
 
 .budio-logo-container {
     text-align: right;
@@ -26,6 +29,10 @@
 .budio-apps-container {
     width: 49%;
     float: left;
+}
+.grupa-link img {
+    max-height: 40px;
+    max-width: 160px;
 }
 
 .budio-logo-container {

@@ -3,7 +3,7 @@
  * Plugin Name: Hurtownia - Budio.pl
  * Plugin URI: https://github.com/budiopl/ClientPlugin
  * Description: Umieszcza link do twojej hurtowni w stopce strony.
- * Version: 1.1
+ * Version: 1.1.2
  * Author: Budio.pl
  * Author URI: https://budio.pl
  * License: GPL2
@@ -23,21 +23,30 @@ function cphb_add_google_fonts()
     wp_enqueue_style( 'wpb-google-fonts', '//fonts.googleapis.com/css?family=Roboto:300&display=swap&subset=latin-ext', false );
 }
 
+function cphb_get_itnavigator_data()
+{
+    $domain = parse_url(get_site_url());
+    $response = wp_remote_get( 'https://itnavigator.budio.pl:444/wp-plugin-data?url='.$domain['host'] );
+    if(!is_wp_error($response))
+    {
+          $dataAPI = json_decode($response['body']);
+          update_option('clientplugin_data', $dataAPI);
+          return $dataAPI;
+    }
+}
 
 
 add_action( 'wp_footer', 'cphb_add_signature' );
 function cphb_add_signature ()
 {
-    $domain = parse_url(get_site_url());
-    $response = wp_remote_get( 'https://itnavigator.budio.pl:444/wp-plugin-data?url='.$domain['host'] );
 
-    if(!is_wp_error($response))
+    $data = get_option('clientplugin_data') ?? cphb_get_itnavigator_data();
+    if(!empty($data))
     {
-          $data = json_decode($response['body']);
           echo '<div class="budio-partner-container">
                  <div class="budio-logo-container">
                      <div class="head">Jesteśmy częścią</div>
-                     <a href="https://budio.pl/" target="_blank" class="ext-link grupa-link" rel="nofollow"><img src="'.plugins_url( 'image/budiopl-logo.png', __FILE__ ).'" alt="Budio.pl"></a>';
+                     <a href="https://budio.pl/" target="_blank" class="ext-link grupa-link" rel="nofollow"><img src="'.plugins_url( 'image/budiopl-logo.svg', __FILE__ ).'" alt="Budio.pl"></a>';
 
           if(!is_null($data->wholesale_link))
           {
